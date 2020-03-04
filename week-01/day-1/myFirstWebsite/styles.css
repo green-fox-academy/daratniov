@@ -1,0 +1,66 @@
+html{
+    background-image: url(../myFirstWebsite/assets/background.png);
+}
+body{
+    margin: 0 auto;
+}
+#header{
+    padding-left: 10%;
+    padding-right: 10%;
+    background-color: #333333;
+    margin-bottom: 80px;
+}
+#header img{
+    height: 30px;
+    padding-top: 15px;
+    padding-bottom: 5px;
+}
+#header a {
+    font-size: 15px;
+    margin: 0 20px;
+    font-family: consolas;
+    color: #ff0099;
+    float: right;
+    padding-top: 17px;
+}
+#content{
+    padding-left: 10%;
+    padding-right: 10%;
+}
+h1{
+    font-family: courier;
+    font-weight: bold;
+    font-size: 60px;
+}
+h3{
+    font-family: courier;
+    font-weight: bold;
+    font-size: 30px;
+    color: #ff0099;
+}
+p{
+    font-family: consolas;
+    font-size: 20px;
+}
+#dashes{
+    font-size: 20px;
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+#text-title{
+    font-family: courier;
+    font-weight: bold;
+    font-size: 40px;
+    text-align: center;
+}
+dt{
+    font-family: courier;
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: 30px;
+}
+dd{
+    font-family: consolas;
+    font-size: 15px;
+}

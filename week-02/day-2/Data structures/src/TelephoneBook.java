@@ -9,9 +9,11 @@ public class TelephoneBook {
         map.put("Amanda D. Newland","319-243-5613");
         map.put("Brooke P. Askew","307-687-2982");
         System.out.println(map.get("John K. Miller"));
+
         for (String key: map.keySet()) {
             if(map.get(key)=="307-687-2982") System.out.println(key);
         }
-        System.out.println(map.containsValue(map.get("Chris E. Myers")));
+
+        System.out.println(map.containsKey("Chris E. Myers"));
     }
 }

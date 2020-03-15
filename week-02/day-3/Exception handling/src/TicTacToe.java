@@ -8,11 +8,6 @@ public class TicTacToe {
 
     public static void main(String[] args) {
         System.out.println(ticTacResult("assets/win-x.txt"));
-
-        // Write a function that takes a filename as a parameter
-        // The file contains an ended Tic-Tac-Toe match
-        // We have provided you some example files (draw.txt, win-x.txt, win-o.txt)
-        // Return "X", "O" or "Draw" based on the input file
     }
 
     private static String ticTacResult(String filename) {

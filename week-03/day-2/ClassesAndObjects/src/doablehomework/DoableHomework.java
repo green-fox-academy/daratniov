@@ -10,14 +10,14 @@ public class DoableHomework {
     System.out.println("Give me the attributions of five trees (type,leaf color,age,sex)");
     for (int i = 1; i <= 4; i++) {
       System.out.println(i + ". tree:");
-      treeList.add(treeCreator());
+      treeList.add(createTree());
     }
     for (String[] tree : treeList) {
-      treePrinter(tree);
+      printTree(tree);
     }
   }
 
-  private static String[] treeCreator() {
+  private static String[] createTree() {
     String[] tree = new String[4];
     Scanner scanner = new Scanner(System.in);
     System.out.println("Type: ");
@@ -31,7 +31,7 @@ public class DoableHomework {
     return tree;
   }
 
-  private static void treePrinter(String[] tree) {
+  private static void printTree(String[] tree) {
     for (int i = 0; i < tree.length; i++) {
       System.out.print(tree[i] + " ");
     }

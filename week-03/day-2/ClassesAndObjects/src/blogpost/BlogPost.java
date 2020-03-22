@@ -13,7 +13,7 @@ public class BlogPost {
     this.publicationDate = publicationDate;
   }
 
-  public void blogPostPrinter() {
+  public void printBlogPost() {
     System.out.println(authorName + "\n" + title + "\n" + text + "\n" + publicationDate + "\n");
   }
 }

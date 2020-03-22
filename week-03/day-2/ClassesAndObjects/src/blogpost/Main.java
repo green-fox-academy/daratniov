@@ -16,15 +16,15 @@ public class Main {
     blog.add(post1);
     blog.add(post2);
     blog.add(post3);
-    blog.blogPrinter();
+    blog.printBlog();
     System.out.println("------------------------------------------------------------------");
     blog.delete(5);
-    blog.blogPrinter();
+    blog.printBlog();
     System.out.println("------------------------------------------------------------------");
     blog.delete(1);
-    blog.blogPrinter();
+    blog.printBlog();
     System.out.println("------------------------------------------------------------------");
     blog.update(0, post2);
-    blog.blogPrinter();
+    blog.printBlog();
   }
 }

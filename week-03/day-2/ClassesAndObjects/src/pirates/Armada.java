@@ -14,10 +14,12 @@ public class Armada {
   //Fills the armada with a random number of ships between 1 and 10, and fills the ships too
   public void fillArmada() {
     int numberOfShips = (int) (Math.random() * 10 + 1);
+
     for (int i = 0; i < numberOfShips; i++) {
       fleet.add(new Ship());
       fleet.get(i).fillShip();
     }
+
   }
 
   //Clash two armadas by the given formula

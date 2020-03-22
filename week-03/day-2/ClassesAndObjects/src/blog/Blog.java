@@ -29,9 +29,9 @@ public class Blog {
     }
   }
 
-  public void blogPrinter() {
+  public void printBlog() {
     for (int i = 0; i < listOfBlogPost.size(); i++) {
-      listOfBlogPost.get(i).blogPostPrinter();
+      listOfBlogPost.get(i).printBlogPost();
     }
   }
 }

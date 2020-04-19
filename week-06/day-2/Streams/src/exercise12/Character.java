@@ -3,9 +3,7 @@ package exercise12;
 public class Character {
   private String name;
   private String height;
-
   private String mass;
-
   private String hairColor;
   private String skinColor;
   private String eyeColor;

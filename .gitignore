@@ -27,3 +27,12 @@ hs_err_pid*
 out
 *.iml
 *.xml
+
+# untracking gradle files
+.gradle
+build
+gradle
+gradlew.bat
+settings.gradle
+
+

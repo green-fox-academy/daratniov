@@ -29,10 +29,10 @@ out
 *.xml
 
 # untracking gradle files
-.gradle
 build
 gradle
+build.gradle
+gradlew
 gradlew.bat
 settings.gradle
-
 

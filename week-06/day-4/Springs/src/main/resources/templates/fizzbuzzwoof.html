@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FizzBuzzWoof</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<p>
+    <span>Hello! This site was loaded </span>
+    <span th:text="${fizzBuzzWoof.getKeyWord()}" th:style="'font-size: '+${fizzBuzzWoof.getFontSize()}+'px;'"></span>
+    <span> times since last server start.</span>
+</p>
+</body>
+</html>

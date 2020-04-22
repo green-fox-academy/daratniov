@@ -1,6 +1,6 @@
 package exercise12;
 
-public class Character {
+public class StarWarsCharacter {
   private String name;
   private String height;
   private String mass;
@@ -10,7 +10,7 @@ public class Character {
   private String birthYear;
   private String gender;
 
-  public Character(String name, String height, String mass, String hairColor, String skinColor, String eyeColor, String birthYear, String gender) {
+  public StarWarsCharacter(String name, String height, String mass, String hairColor, String skinColor, String eyeColor, String birthYear, String gender) {
     this.name = name;
     this.height = height;
     this.mass = mass;
@@ -30,7 +30,7 @@ public class Character {
   }
 
   public String getMass() {
-    return mass;
+    return this.mass.replace(",", "");
   }
 
   public String getHairColor() {

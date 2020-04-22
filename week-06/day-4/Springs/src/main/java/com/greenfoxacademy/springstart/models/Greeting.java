@@ -1,4 +1,4 @@
-package com.greenfoxacademy.springstart.classes;
+package com.greenfoxacademy.springstart.models;
 
 public class Greeting {
   private long greetCount;

@@ -22,41 +22,45 @@ public class Exercise12 {
       System.exit(0);
     }
 
-    List<Character> listOfCharacters = linesOfCharacters
+    List<StarWarsCharacter> listOfCharacters = convertToStarWarsCharacters(linesOfCharacters);
+    System.out.println(getHeaviestCharacter(listOfCharacters));
+    System.out.println(calculateAverageHeightBySpecificGender(listOfCharacters, "male"));
+    System.out.println(calculateAverageHeightBySpecificGender(listOfCharacters, "female"));
+    createMapOfGendersByAge(listOfCharacters).entrySet().forEach(System.out::println);
+  }
+
+  public static List<StarWarsCharacter> convertToStarWarsCharacters(List<String> linesOfCharacters) {
+    return linesOfCharacters
         .stream()
         .skip(1)
         .map(line -> line.split(";"))
-        .map(line -> new Character(line[0], line[1], line[2], line[3], line[4], line[5], line[6], line[7]))
+        .map(line -> new StarWarsCharacter(line[0], line[1], line[2], line[3], line[4], line[5], line[6], line[7]))
         .collect(toList());
+  }
 
-    System.out.println(listOfCharacters.stream()
-        .map(c -> new Character(c.getName(), c.getHeight(), c.getMass().replace(",", ""), c.getHairColor(), c.getSkinColor(), c.getEyeColor(), c.getBirthYear(), c.getGender()))
+  public static String getHeaviestCharacter(List<StarWarsCharacter> listOfCharacters) {
+    return listOfCharacters.stream()
         .filter(c -> isInteger(c.getMass()))
         .max(Comparator.comparing(c -> Integer.parseInt(c.getMass())))
         .orElseThrow(NoSuchElementException::new)
-        .getName());
-
-    System.out.println(listOfCharacters.stream()
-        .filter(c -> c.getGender().equals("male"))
-        .filter(c -> isInteger(c.getHeight()))
-        .map(Character::getHeight)
-        .mapToInt(Integer::parseInt)
-        .summaryStatistics().getAverage());
-
-    System.out.println(listOfCharacters.stream()
-        .filter(c -> c.getGender().equals("female"))
-        .filter(c -> isInteger(c.getHeight()))
-        .map(Character::getHeight)
-        .mapToInt(Integer::parseInt)
-        .summaryStatistics().getAverage());
-
-    Map<String, Map<String, Long>> mapOfGendersByAge = listOfCharacters.stream()
-        .collect(groupingBy(Exercise12::groupingByGender, groupingBy(Exercise12::groupingByAge, counting())));
-
-    mapOfGendersByAge.entrySet().forEach(System.out::println);
+        .getName();
   }
 
-  public static String groupingByAge(Character c) {
+  public static double calculateAverageHeightBySpecificGender(List<StarWarsCharacter> listOfCharacters, String gender) {
+    return listOfCharacters.stream()
+        .filter(c -> c.getGender().equals(gender))
+        .filter(c -> isInteger(c.getHeight()))
+        .map(StarWarsCharacter::getHeight)
+        .mapToInt(Integer::parseInt)
+        .summaryStatistics().getAverage();
+  }
+
+  public static Map<String, Map<String, Long>> createMapOfGendersByAge(List<StarWarsCharacter> listOfCharacters) {
+    return listOfCharacters.stream()
+        .collect(groupingBy(Exercise12::groupingByGender, groupingBy(Exercise12::groupingByAge, counting())));
+  }
+
+  private static String groupingByAge(StarWarsCharacter c) {
     String birthYear = c.getBirthYear().replace("BBY", "");
     if (birthYear.equals("unknown")) {
       return birthYear;
@@ -72,7 +76,7 @@ public class Exercise12 {
     }
   }
 
-  public static String groupingByGender(Character c) {
+  private static String groupingByGender(StarWarsCharacter c) {
     if (!c.getGender().equals("male") && !c.getGender().equals(("female"))) {
       return "other";
     } else {
@@ -80,7 +84,7 @@ public class Exercise12 {
     }
   }
 
-  public static boolean isInteger(String s) {
+  private static boolean isInteger(String s) {
     try {
       Integer.parseInt(s);
       return true;

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Check Student</title>
+</head>
+<body>
+<a href="/gfa">Back</a>
+<p>Check student if he/she is in the class:</p>
+<form action="/gfa/check" method="post">
+    <label for="name">Name: </label>
+    <input type="text" id="name" name="name" required autofocus>
+    <button>Check</button>
+</form>
+<p th:if="${name}" th:utext="'<b>'+${name}+'</b>' + ' is '+(${contain} ? '': ' not') + ' in the class!'"
+   th:style="'color: '+(${contain} ? 'green' : 'red')"></p>
+</body>
+</html>

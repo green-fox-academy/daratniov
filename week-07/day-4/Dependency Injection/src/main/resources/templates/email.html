@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Email</title>
+</head>
+<body>
+<a href="http://localhost:8080/useful">Back</a>
+<form action="/useful/email" method="post">
+    <label for="email">Email: </label>
+    <input type="text" id="email" name="email" required autofocus>
+    <button type="submit">Submit</button>
+</form>
+<div th:if="${email}">
+    <p th:if="${valid}" th:text="${email} + ' is a valid email address!'" th:style="'color: green'"></p>
+    <p th:unless="${valid}" th:text="${email} + ' is not a valid email address!'" th:style="'color: red'"></p>
+</div>
+</body>
+</html>

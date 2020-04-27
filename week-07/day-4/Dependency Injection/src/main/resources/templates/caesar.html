@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Caesar</title>
+</head>
+<body>
+<a href="http://localhost:8080/useful">Back</a>
+<form action="/useful/caesar" method="post">
+    <label for="caesar">Caesar: </label>
+    <input type="text" id="caesar" name="caesar" th:value="${caesar}" required autofocus>
+    <button th:unless="${wasEncoded}" type="submit" name="encode">Encode</button>
+    <button th:unless="${wasDecoded}" type="submit">Decode</button>
+</form>
+</body>
+</html>

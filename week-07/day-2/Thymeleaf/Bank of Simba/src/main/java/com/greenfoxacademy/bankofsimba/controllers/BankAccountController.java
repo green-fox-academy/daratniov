@@ -16,11 +16,11 @@ public class BankAccountController {
   private List<BankAccount> listOfBankAccounts = new ArrayList<>();
 
   public BankAccountController() {
-    listOfBankAccounts.add(new BankAccount("Simba", 2000, "lion", true, "good"));
-    listOfBankAccounts.add(new BankAccount("Timon", 3500, "meerkat", false, "good"));
-    listOfBankAccounts.add(new BankAccount("Mufasa", 5000, "lion", true, "good"));
-    listOfBankAccounts.add(new BankAccount("Rafiki", 500, "monkey", false, "good"));
-    listOfBankAccounts.add(new BankAccount("Zordon", 8300, "lion", false, "bad"));
+    listOfBankAccounts.add(new BankAccount("Simba", 2000, "lion", true, true));
+    listOfBankAccounts.add(new BankAccount("Timon", 3500, "meerkat", false, true));
+    listOfBankAccounts.add(new BankAccount("Mufasa", 5000, "lion", true, true));
+    listOfBankAccounts.add(new BankAccount("Rafiki", 500, "monkey", false, true));
+    listOfBankAccounts.add(new BankAccount("Zordon", 8300, "lion", false, false));
   }
 
   @RequestMapping(path = "/show", method = RequestMethod.GET)
@@ -52,7 +52,8 @@ public class BankAccountController {
 
   @RequestMapping(path = "/increase/balance", method = RequestMethod.POST)
   public String increaseBalance(String name) {
-    Optional<BankAccount> account = listOfBankAccounts.stream().filter(a -> a.getName().equalsIgnoreCase(name)).findFirst();
+    Optional<BankAccount> account = listOfBankAccounts.stream()
+        .filter(a -> a.getName().equalsIgnoreCase(name)).findFirst();
     if (account.isPresent()) {
       int increment;
       if (account.get().isKing()) {
@@ -66,8 +67,10 @@ public class BankAccountController {
   }
 
   @RequestMapping(path = "/add", method = RequestMethod.POST)
-  public String addNewAccount(String name, int balance, String animalType, String isKing, String badOrGood) {
-    listOfBankAccounts.add(new BankAccount(name,balance,animalType,isKing.equalsIgnoreCase("true"),badOrGood));
+  public String addNewAccount(String name, int balance, String animalType,
+                              String isKing, boolean badOrGood) {
+    listOfBankAccounts.add(new BankAccount(name, balance, animalType,
+        isKing.equalsIgnoreCase("true"), badOrGood));
     return "redirect:/show";
   }
 }

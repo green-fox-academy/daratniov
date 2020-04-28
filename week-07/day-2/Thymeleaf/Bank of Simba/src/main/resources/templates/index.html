@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Bank of Simba</title>
     <link rel="stylesheet" th:href="@{/style.css}"/>
@@ -26,31 +26,31 @@
         <td th:text="*{animalType}"></td>
         <td th:if="*{king}" th:style="'color: red'">YES</td>
         <td th:unless="*{king}">NO</td>
-        <td th:if="*{badOrGood.equalsIgnoreCase('bad')}">Bad Guy</td>
-        <td th:if="*{badOrGood.equalsIgnoreCase('good')}">Good Guy</td>
+        <td th:if="*{badOrGood}">Good Guy</td>
+        <td th:if="*{!badOrGood}">Bad Guy</td>
     </tr>
     </tbody>
 </table>
 <form action="/increase/balance" method="post">
-    <label>Raise balance of:</label>
-    <input type="text" name="name" required autofocus>
+    <label for="nameToRaise">Raise balance of:</label>
+    <input type="text" id="nameToRaise" name="name" required autofocus>
     <button type="submit">Raise</button>
 </form>
 <h2>Add new Bank Account:</h2>
 <div>
     <form action="/add" method="post">
-        <label>Name:</label>
-        <input type="text" name="name" required autofocus><br>
-        <label>Balance:</label>
-        <input type="number" name="balance" required><br>
-        <label>Type:</label>
-        <input type="text" name="animalType" required><br>
-        <label>Is King:</label><br>
-        <input type="radio" name="isKing" value="true" checked>Yes
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required autofocus><br>
+        <label for="balance">Balance:</label>
+        <input type="number" id="balance" name="balance" required><br>
+        <label for="animalType">Type:</label>
+        <input type="text" id="animalType" name="animalType" required><br>
+        <label for="isKing">Is King:</label><br>
+        <input type="radio" id="isKing" name="isKing" value="true" checked>Yes
         <input type="radio" name="isKing" value="false">No<br>
-        <label>Bad or Good Character?</label><br>
-        <input type="radio" name="badOrGood" value="bad" checked> Bad
-        <input type="radio" name="badOrGood" value="good"> Good<br>
+        <label for="badOrGood">Bad or Good Character?</label><br>
+        <input type="radio" id="badOrGood" name="badOrGood" value="true" checked> Good
+        <input type="radio" name="badOrGood" value="false"> Bad<br>
         <button type="submit">Add</button>
     </form>
 </div>

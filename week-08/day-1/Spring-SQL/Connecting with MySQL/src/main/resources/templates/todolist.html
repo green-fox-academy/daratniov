@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Todo CRUD App</title>
+    <link rel="icon" href="https://pngimage.net/wp-content/uploads/2018/06/leaf-png-icon-6.png" type="image/x-icon">
+</head>
+<body>
+<h1>TODOS FOR TODAY:</h1>
+<div>
+    <a href="/todo/add">Add new todo</a>
+</div>
+<table th:style="|margin-top: 5px;|">
+    <thead>
+    <tr th:style="|font-weight: bold;text-align: center;|">
+        <td>ID</td>
+        <td>ACTION</td>
+        <td>DONE</td>
+        <td>URGENT</td>
+        <td>DATE</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="todo: ${todos}" th:object="${todo}">
+        <td th:text="*{id}" th:style="|border: solid black 1px;|"></td>
+        <td th:style="|border: solid black 1px;|">
+            <a th:href="@{|/todo/details/${todo.id}}" th:text="*{title}" target="_blank"></a>
+        </td>
+        <td th:text="*{done}" th:style="|border: solid black 1px;|"></td>
+        <td th:text="*{urgent}" th:style="|border: solid black 1px;|"></td>
+        <td th:text="*{dateOfCreation}" th:style="|border: solid black 1px;|"></td>
+        <td th:style="|border: solid black 1px;|"><a th:href="@{|/todo/${todo.id}/delete|}">delete</a></td>
+        <td th:style="|border: solid black 1px;|"><a th:href="@{|/todo/${todo.id}/edit|}">edit</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

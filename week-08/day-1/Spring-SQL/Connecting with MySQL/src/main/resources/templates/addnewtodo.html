@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Todo</title>
+    <link rel="icon" href="https://pngimage.net/wp-content/uploads/2018/06/leaf-png-icon-6.png" type="image/x-icon">
+</head>
+<body>
+<h1>Add new todo</h1>
+<form action="/todo/add" th:object="${todo}" method="post">
+    <input type="text" th:field="*{title}" required autofocus><br>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>

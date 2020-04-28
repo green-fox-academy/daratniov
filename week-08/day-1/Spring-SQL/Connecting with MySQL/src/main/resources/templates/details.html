@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Details</title>
+    <link rel="icon" href="https://pngimage.net/wp-content/uploads/2018/06/leaf-png-icon-6.png" type="image/x-icon">
+</head>
+<body>
+<p th:style="|margin: 0;|">Details:</p>
+<ul th:style="|margin: 0;|">
+    <li th:text="|ID: ${todo.id}|"></li>
+    <li th:text="|Description: ${todo.title}|"></li>
+    <li th:text="|Done: ${todo.done}|"></li>
+    <li th:text="|Urgent: ${todo.urgent}|"></li>
+    <li th:text="|Date of creation: ${todo.dateOfCreation}|"></li>
+</ul>
+</body>
+</html>

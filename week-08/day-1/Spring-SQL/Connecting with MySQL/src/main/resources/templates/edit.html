@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Todo CRUD App</title>
+    <link rel="icon" href="https://pngimage.net/wp-content/uploads/2018/06/leaf-png-icon-6.png" type="image/x-icon">
+</head>
+<body>
+<h1 th:style="|margin-bottom:20px;|">Edit Todo</h1>
+<form th:action="@{|/todo/${todo.id}/edit|}" method="post" th:object="${todo}">
+    <label>Todo Description</label>
+    <input type="text" name="description" th:field="*{title}"><br>
+    <label>Urgent</label>
+    <input type="checkbox" name="urgent" th:field="*{urgent}"><br>
+    <label>Done</label>
+    <input type="checkbox" name="done" th:field="*{done}"><br>
+    <button type="submit">Submit</button>
+    <a th:href="@{|/todo/list|}">Cancel</a>
+</form>
+</body>
+</html>

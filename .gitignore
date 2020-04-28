@@ -31,8 +31,6 @@ out
 # untracking gradle files
 build
 gradle
-build.gradle
-gradlew
 gradlew.bat
 settings.gradle
 

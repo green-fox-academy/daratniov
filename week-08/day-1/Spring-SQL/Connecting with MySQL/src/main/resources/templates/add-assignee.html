@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Assignee</title>
+    <link rel="icon" href="https://pngimage.net/wp-content/uploads/2018/06/leaf-png-icon-6.png" type="image/x-icon">
+</head>
+<body>
+<h1>Add new Assignee</h1>
+<form action="/todo/add-assignee" th:object="${assignee}" method="post">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" th:field="*{name}" required autofocus><br><br>
+
+    <label for="email">E-mail</label>
+    <input type="email" id="email" name="email" th:field="*{email}"><br>
+
+    <button type="submit">Add</button><br><br>
+    <a th:href="@{|/todo/list-of-assignees|}">Cancel</a>
+</form>
+</body>
+</html>

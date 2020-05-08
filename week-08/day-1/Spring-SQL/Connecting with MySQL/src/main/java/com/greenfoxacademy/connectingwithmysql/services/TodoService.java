@@ -2,9 +2,13 @@ package com.greenfoxacademy.connectingwithmysql.services;
 
 import com.greenfoxacademy.connectingwithmysql.models.Todo;
 import com.greenfoxacademy.connectingwithmysql.repositories.TodoRepository;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import org.joda.time.DateTimeComparator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,5 +52,55 @@ public class TodoService {
     repository.findById(todo.getId())
         .ifPresent(value -> todo.setDateOfCreation(value.getDateOfCreation()));
     repository.save(todo);
+  }
+
+  public List<Todo> search(String search, String button) {
+    switch (button) {
+      case "title":
+        return repository.findAllByTitleContains(search);
+      case "content":
+        return repository.findAllByContentContains(search);
+      case "description":
+        return repository.findAllByDescriptionContains(search);
+      default:
+        return repository
+            .findAllByTitleContainingOrContentContainingOrDescriptionContaining(search, search, search);
+    }
+  }
+
+  public List<Todo> searchByDate(String date, String button, String when) {
+    DateTimeComparator dateTimeComparator = DateTimeComparator.getDateOnlyInstance();
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    List<Todo> todos = (List<Todo>) repository.findAll();
+    try {
+      Date convertedDate = formatter.parse(date);
+      if (button.equalsIgnoreCase("date-of-creation")) {
+        if (when.equalsIgnoreCase("before")) {
+          todos=todos.stream().filter(t->dateTimeComparator
+              .compare(convertedDate,t.getDateOfCreation())>0).collect(Collectors.toList());
+        } else if (when.equalsIgnoreCase("on-that-day")) {
+          todos=todos.stream().filter(t->dateTimeComparator
+              .compare(convertedDate,t.getDateOfCreation())==0).collect(Collectors.toList());
+        } else {
+          todos=todos.stream().filter(t->dateTimeComparator
+              .compare(convertedDate,t.getDateOfCreation())<0).collect(Collectors.toList());
+        }
+      } else {
+        todos=todos.stream().filter(t->t.getDueDate()!=null).collect(Collectors.toList());
+        if (when.equalsIgnoreCase("before")) {
+          todos=todos.stream().filter(t->dateTimeComparator
+              .compare(convertedDate,t.getDueDate())>0).collect(Collectors.toList());
+        } else if (when.equalsIgnoreCase("on-that-day")) {
+          todos=todos.stream().filter(t->dateTimeComparator
+              .compare(convertedDate,t.getDueDate())==0).collect(Collectors.toList());
+        } else {
+          todos=todos.stream().filter(t->dateTimeComparator
+              .compare(convertedDate,t.getDueDate())<0).collect(Collectors.toList());
+        }
+      }
+    } catch (ParseException e) {
+      System.out.println("Could not convert string to date!");
+    }
+    return todos;
   }
 }

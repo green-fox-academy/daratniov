@@ -10,10 +10,13 @@
 <p th:style="|margin: 0;|">Details:</p>
 <ul th:style="|margin: 0;|">
     <li th:text="|ID: ${todo.id}|"></li>
-    <li th:text="|Description: ${todo.title}|"></li>
+    <li th:text="|Title: ${todo.title}|"></li>
+    <li th:text="|Content: ${todo.content}|"></li>
+    <li th:text="|Description: ${todo.description}|"></li>
     <li th:text="|Done: ${todo.done}|"></li>
     <li th:text="|Urgent: ${todo.urgent}|"></li>
     <li th:text="|Date of creation: ${todo.dateOfCreation}|"></li>
+    <li th:text="|Due-date: ${todo.dueDate}|"></li>
 </ul>
 </body>
 </html>

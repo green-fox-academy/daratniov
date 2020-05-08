@@ -9,8 +9,31 @@
 <body>
 <h1>Add new todo</h1>
 <form action="/todo/add" th:object="${todo}" method="post">
-    <input type="text" th:field="*{title}" required autofocus><br>
-    <button type="submit">Submit</button>
+    <label for="title">Title</label>
+    <input type="text" id="title" name="title" th:field="*{title}" required autofocus><br><br>
+
+    <label for="urgent">Urgent</label>
+    <input type="checkbox" id="urgent" name="urgent" th:field="*{urgent}"><br>
+
+    <h3>Content</h3>
+    <label for="personal">Personal</label>
+    <input type="radio" id="personal" name="content" th:field="*{content}" value="personal"><br>
+    <label for="business">Business</label>
+    <input type="radio" id="business" name="content" th:field="*{content}" value="business"><br>
+
+    <h3>Description</h3>
+    <label for="easy">Easy</label>
+    <input type="radio" id="easy" name="description" th:field="*{description}" value="easy"><br>
+    <label for="basic">Basic</label>
+    <input type="radio" id="basic" name="description" th:field="*{description}" value="basic"><br>
+    <label for="hard">Hard</label>
+    <input type="radio" id="hard" name="description" th:field="*{description}" value="hard"><br><br>
+
+    <label for="due-date">Due date</label>
+    <input type="date" id="due-date" name="due-date" th:field="*{dueDate}"><br><br>
+
+    <button type="submit">Add</button><br><br>
+    <a th:href="@{|/todo/list|}">Cancel</a>
 </form>
 </body>
 </html>

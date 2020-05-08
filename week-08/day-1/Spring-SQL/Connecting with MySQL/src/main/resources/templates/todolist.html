@@ -9,16 +9,44 @@
 <body>
 <h1>TODOS FOR TODAY:</h1>
 <div>
-    <a href="/todo/add">Add new todo</a>
+    <a href="/todo/add">Add new todo</a><br>
 </div>
+<div>
+    <a href="/todo/list-of-assignees">List of Assignees</a><br>
+</div>
+<form action="/todo/search" method="get" th:style="|margin-top: 25px;|">
+    <label for="search">Search for: </label><br><br>
+    <input type="text" id="search" name="search" th:value="${search}" required autofocus>
+    <button type="submit" name="button" value="title">By title</button>
+    <button type="submit" name="button" value="content">By content</button>
+    <button type="submit" name="button" value="description">By description</button>
+    <button type="submit" name="button" value="search-in-all">By all</button>
+</form>
+<form action="/todo/search-by-date" method="get" th:style="|margin-top: 25px;margin-bottom: 25px;|">
+    <input type="date" name="date" th:value="${date}" required>
+    <button type="submit" name="button" value="date-of-creation">By date of creation</button>
+    <button type="submit" name="button" value="due-date">By due date</button><br>
+    <label for="before">Before</label>
+    <input type="radio" id="before" name="when" value="before"><br>
+    <label for="on-that-day">On that day</label>
+    <input type="radio" id="on-that-day" name="when" value="on-that-day" checked><br>
+    <label for="after">After</label>
+    <input type="radio" id="after" name="when" value="after"><br><br>
+</form>
+<form action="/todo/list" method="get" th:style="|margin-top: 25px;margin-bottom: 25px;|">
+    <button type="submit" name="button" value="show-all">Show all</button>
+</form>
 <table th:style="|margin-top: 5px;|">
     <thead>
     <tr th:style="|font-weight: bold;text-align: center;|">
         <td>ID</td>
-        <td>ACTION</td>
+        <td>TITLE</td>
+        <td>CONTENT</td>
+        <td>DESCRIPTION</td>
         <td>DONE</td>
         <td>URGENT</td>
-        <td>DATE</td>
+        <td>DATE OF CREATION</td>
+        <td>DUE DATE</td>
     </tr>
     </thead>
     <tbody>
@@ -27,9 +55,12 @@
         <td th:style="|border: solid black 1px;|">
             <a th:href="@{|/todo/details/${todo.id}}" th:text="*{title}" target="_blank"></a>
         </td>
+        <td th:text="*{content}" th:style="|border: solid black 1px;|"></td>
+        <td th:text="*{description}" th:style="|border: solid black 1px;|"></td>
         <td th:text="*{done}" th:style="|border: solid black 1px;|"></td>
         <td th:text="*{urgent}" th:style="|border: solid black 1px;|"></td>
         <td th:text="*{dateOfCreation}" th:style="|border: solid black 1px;|"></td>
+        <td th:text="*{dueDate}" th:style="|border: solid black 1px;|"></td>
         <td th:style="|border: solid black 1px;|"><a th:href="@{|/todo/${todo.id}/delete|}">delete</a></td>
         <td th:style="|border: solid black 1px;|"><a th:href="@{|/todo/${todo.id}/edit|}">edit</a></td>
     </tr>

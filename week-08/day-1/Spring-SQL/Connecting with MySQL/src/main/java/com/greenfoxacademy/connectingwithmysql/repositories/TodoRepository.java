@@ -10,9 +10,16 @@ import org.springframework.stereotype.Repository;
 public interface TodoRepository extends CrudRepository<Todo, Long> {
 
   List<Todo> findAllByTitleContains(String search);
+
   List<Todo> findAllByContentContains(String search);
+
   List<Todo> findAllByDescriptionContains(String search);
-  List<Todo> findAllByDateOfCreationContaining(String search);
-  List<Todo> findAllByDueDateContaining(String search);
-  List<Todo> findAllByTitleContainingOrContentContainingOrDescriptionContaining(String string1,String string2,String string3);
+
+  List<Todo> findAllByTitleContainingOrContentContainingOrDescriptionContaining(String string1, String string2, String string3);
+
+  @Query("SELECT todo FROM Todo todo WHERE todo.assignee.id= :id")
+  List<Todo> findTodosByID(long id);
+
+  @Query("SELECT todo FROM Todo todo WHERE todo.assignee.name= :name")
+  List<Todo> findTodosByAssignee(String name);
 }

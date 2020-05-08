@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Todos of Assignee</title>
+    <link rel="icon" href="https://pngimage.net/wp-content/uploads/2018/06/leaf-png-icon-6.png" type="image/x-icon">
 </head>
 <body>
-$END$
+<h1 th:text="|TODOS of ${assignee.name}|"></h1>
+<div th:each="todo: ${todos}">
+    <p th:text="|${todo.title}:|" th:style="|margin: 0;|"></p>
+    <ul th:style="|margin: 0;|">
+        <li th:text="|ID: ${todo.id}|"></li>
+        <li th:text="|Content: ${todo.content}|"></li>
+        <li th:text="|Description: ${todo.description}|"></li>
+        <li th:text="|Done: ${todo.done}|"></li>
+        <li th:text="|Urgent: ${todo.urgent}|"></li>
+        <li th:text="|Date of creation: ${todo.dateOfCreation}|"></li>
+        <li th:text="|Due-date: ${todo.dueDate}|"></li>
+    </ul><br>
+</div>
 </body>
 </html>

@@ -32,6 +32,11 @@
     <label for="due-date">Due date</label>
     <input type="date" id="due-date" name="due-date" th:field="*{dueDate}"><br><br>
 
+    <label for="assignee">Assignee</label>
+    <select name="assignee" id="assignee">
+        <option th:each="assignee: ${assignees}" th:value="${assignee.id}" th:text="${assignee.name}"></option>
+    </select>
+
     <button type="submit">Add</button><br><br>
     <a th:href="@{|/todo/list|}">Cancel</a>
 </form>

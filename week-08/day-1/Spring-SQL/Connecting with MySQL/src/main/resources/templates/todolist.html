@@ -20,6 +20,7 @@
     <button type="submit" name="button" value="title">By title</button>
     <button type="submit" name="button" value="content">By content</button>
     <button type="submit" name="button" value="description">By description</button>
+    <button type="submit" name="button" value="assignee">By assignee</button>
     <button type="submit" name="button" value="search-in-all">By all</button>
 </form>
 <form action="/todo/search-by-date" method="get" th:style="|margin-top: 25px;margin-bottom: 25px;|">
@@ -47,6 +48,7 @@
         <td>URGENT</td>
         <td>DATE OF CREATION</td>
         <td>DUE DATE</td>
+        <td>ASSIGNEE</td>
     </tr>
     </thead>
     <tbody>
@@ -60,7 +62,11 @@
         <td th:text="*{done}" th:style="|border: solid black 1px;|"></td>
         <td th:text="*{urgent}" th:style="|border: solid black 1px;|"></td>
         <td th:text="*{dateOfCreation}" th:style="|border: solid black 1px;|"></td>
-        <td th:text="*{dueDate}" th:style="|border: solid black 1px;|"></td>
+        <td th:text="*{dueDate} != null ? *{dueDate} : 'unknown'" th:style="|border: solid black 1px;|"></td>
+        <td th:text="${todo.assignee} != null ? ${todo.assignee.name} : 'unknown'" th:style="|border: solid black 1px;|" >
+            <a th:if="${todo.assignee}!= null" th:text="${todo.assignee}"
+               th:href="@{|/todo/assignee/todos/${todo.assignee.id}}" target="_blank" ></a>
+        </td>
         <td th:style="|border: solid black 1px;|"><a th:href="@{|/todo/${todo.id}/delete|}">delete</a></td>
         <td th:style="|border: solid black 1px;|"><a th:href="@{|/todo/${todo.id}/edit|}">edit</a></td>
     </tr>

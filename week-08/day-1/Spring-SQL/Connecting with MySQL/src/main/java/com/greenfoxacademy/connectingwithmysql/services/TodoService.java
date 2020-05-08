@@ -62,6 +62,8 @@ public class TodoService {
         return repository.findAllByContentContains(search);
       case "description":
         return repository.findAllByDescriptionContains(search);
+      case "assignee":
+        return repository.findTodosByAssignee(search);
       default:
         return repository
             .findAllByTitleContainingOrContentContainingOrDescriptionContaining(search, search, search);
@@ -76,31 +78,35 @@ public class TodoService {
       Date convertedDate = formatter.parse(date);
       if (button.equalsIgnoreCase("date-of-creation")) {
         if (when.equalsIgnoreCase("before")) {
-          todos=todos.stream().filter(t->dateTimeComparator
-              .compare(convertedDate,t.getDateOfCreation())>0).collect(Collectors.toList());
+          todos = todos.stream().filter(t -> dateTimeComparator
+              .compare(convertedDate, t.getDateOfCreation()) > 0).collect(Collectors.toList());
         } else if (when.equalsIgnoreCase("on-that-day")) {
-          todos=todos.stream().filter(t->dateTimeComparator
-              .compare(convertedDate,t.getDateOfCreation())==0).collect(Collectors.toList());
+          todos = todos.stream().filter(t -> dateTimeComparator
+              .compare(convertedDate, t.getDateOfCreation()) == 0).collect(Collectors.toList());
         } else {
-          todos=todos.stream().filter(t->dateTimeComparator
-              .compare(convertedDate,t.getDateOfCreation())<0).collect(Collectors.toList());
+          todos = todos.stream().filter(t -> dateTimeComparator
+              .compare(convertedDate, t.getDateOfCreation()) < 0).collect(Collectors.toList());
         }
       } else {
-        todos=todos.stream().filter(t->t.getDueDate()!=null).collect(Collectors.toList());
+        todos = todos.stream().filter(t -> t.getDueDate() != null).collect(Collectors.toList());
         if (when.equalsIgnoreCase("before")) {
-          todos=todos.stream().filter(t->dateTimeComparator
-              .compare(convertedDate,t.getDueDate())>0).collect(Collectors.toList());
+          todos = todos.stream().filter(t -> dateTimeComparator
+              .compare(convertedDate, t.getDueDate()) > 0).collect(Collectors.toList());
         } else if (when.equalsIgnoreCase("on-that-day")) {
-          todos=todos.stream().filter(t->dateTimeComparator
-              .compare(convertedDate,t.getDueDate())==0).collect(Collectors.toList());
+          todos = todos.stream().filter(t -> dateTimeComparator
+              .compare(convertedDate, t.getDueDate()) == 0).collect(Collectors.toList());
         } else {
-          todos=todos.stream().filter(t->dateTimeComparator
-              .compare(convertedDate,t.getDueDate())<0).collect(Collectors.toList());
+          todos = todos.stream().filter(t -> dateTimeComparator
+              .compare(convertedDate, t.getDueDate()) < 0).collect(Collectors.toList());
         }
       }
     } catch (ParseException e) {
       System.out.println("Could not convert string to date!");
     }
     return todos;
+  }
+
+  public List<Todo> getTodosByAssignee(long id) {
+    return repository.findTodosByID(id);
   }
 }

@@ -40,6 +40,7 @@ public class TodoController {
   @GetMapping(path = "/add")
   public String add(Model model) {
     model.addAttribute("todo", new Todo());
+    model.addAttribute("assignees",assigneeService.listAllAssignees());
     return "addnewtodo";
   }
 
@@ -58,6 +59,7 @@ public class TodoController {
   @GetMapping(path = "/{id}/edit")
   public String edit(@PathVariable long id, Model model) {
     model.addAttribute("todo", todoService.getTodo(id));
+    model.addAttribute("assignees",assigneeService.listAllAssignees());
     return "edit";
   }
 
@@ -122,5 +124,12 @@ public class TodoController {
   public String editAssignee(@ModelAttribute Assignee assignee) {
     assigneeService.updateAssignee(assignee);
     return "redirect:/todo/list-of-assignees";
+  }
+
+  @GetMapping(path = "/assignee/todos/{id}")
+  public String getTodosOfAssignee(@PathVariable long id, Model model) {
+    model.addAttribute("todos", todoService.getTodosByAssignee(id));
+    model.addAttribute("assignee",assigneeService.getAssignee(id));
+    return "assignee-todos";
   }
 }
